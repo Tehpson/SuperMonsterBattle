@@ -4,18 +4,16 @@
     {
         public string Name { get; private set; }
 
+        private uint hp;
         public uint HP
         {
-            get
-            {
-                return HP;
-            }
+            get => hp;
             set
             {
-                if (value > HP)
+                if (value > hp)
                 {
                     Dead = true;
-                    HP = 0;
+                    hp = 0;
                 }
             }
         }

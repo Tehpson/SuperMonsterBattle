@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SuperMonsterBattle.Logic;
+using SuperMonsterBattle.Models;
+using System;
 
 namespace SuperMonsterBattle
 {
@@ -6,7 +8,13 @@ namespace SuperMonsterBattle
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.SetWindowSize(100, 25);
+            Console.SetBufferSize(100, 25);
+            Console.WriteLine("Enter Name:");
+            var name = Console.ReadLine();
+            var manager = new Manager(new Player(name, 100, 2, 10));
+            manager.RunGame();
+            
         }
     }
 }

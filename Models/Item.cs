@@ -5,15 +5,15 @@ namespace SuperMonsterBattle.Models
     public class Item
     {
         public string Name { get; private set; }
-        public Dictionary<Stat, int> Effects { get; private set; } = new Dictionary<Stat, int>();
+        public Dictionary<Stats, int> Effects { get; private set; } = new Dictionary<Stats, int>();
 
-        public Item(string Name, Dictionary<Stat, int> Effects)
+        public Item(string Name, Dictionary<Stats, int> Effects)
         {
             this.Name = Name;
             this.Effects = Effects;
         }
     }
-    public enum Stat
+    public enum Stats
     {
         HP,
         Damage,
