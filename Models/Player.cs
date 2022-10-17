@@ -5,7 +5,7 @@ namespace SuperMonsterBattle.Models
     internal class Player : Creature
     {
        
-        public List<Item> Items { get; set; } = new List<Item>();
+        public List<IItem> Items { get; set; } = new List<IItem>();
         public double Money { get; set; }
 
         public Player(string Name, int HP, uint Damage, double Money) : base(Name, HP, Damage) { this.Money = Money; }
