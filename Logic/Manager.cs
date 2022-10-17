@@ -1,4 +1,5 @@
 ﻿using SuperMonsterBattle.Models;
+using SuperMonsterBattle.Visuals;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace SuperMonsterBattle.Logic
         {
             while (true)
             {
-                Visuals.Visual.Draw(player);
+                Visual.DrawStatusBar(player);
                 switch (state)
                 {
                     case State.Menu:
@@ -33,15 +34,50 @@ namespace SuperMonsterBattle.Logic
 
         private void Menu()
         {
-            Console.Read();
+            Visual.DrawMenu();
+            Console.SetCursorPosition(0, 0);
+            while (true)
+            {
+                //Upadete to be a interactive menu instead of keypress
+                switch (Console.ReadKey(false).Key)
+                {
+                    case ConsoleKey.NumPad1:
+                    case ConsoleKey.D1:
+                        state = State.Rest;
+                        return;
+
+                    case ConsoleKey.NumPad2:
+                    case ConsoleKey.D2:
+                        state = State.Urban;
+                        return;
+
+                    case ConsoleKey.NumPad3:
+                    case ConsoleKey.D3:
+                        state = State.DrugRun;
+                        return;
+
+                    case ConsoleKey.NumPad4:
+                    case ConsoleKey.D4:
+                        state = State.StealRun;
+                        return;
+
+                    case ConsoleKey.NumPad5:
+                    case ConsoleKey.D5:
+                        state = State.Delivery;
+                        return;
+
+                    case ConsoleKey.E:
+                        state = State.Inventory;
+                        return;
+                }
+            }
         }
-
-
     }
     public enum State
     {
 
         Menu,
+        Inventory,
         DrugRun,
         Delivery,
         StealRun,

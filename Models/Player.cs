@@ -8,7 +8,7 @@ namespace SuperMonsterBattle.Models
         public List<Item> Items { get; set; } = new List<Item>();
         public double Money { get; set; }
 
-        public Player(string Name, uint HP, uint Damage, double Money) : base(Name, HP, Damage) { this.Money = Money; }
+        public Player(string Name, int HP, uint Damage, double Money) : base(Name, HP, Damage) { this.Money = Money; }
 
         public override uint TakeDamage(uint damage)
         {
@@ -20,7 +20,7 @@ namespace SuperMonsterBattle.Models
             }
             else
             {
-                HP -= damageTaken;
+                HP -= (int)damageTaken;
                 return damageTaken;
             }
         }

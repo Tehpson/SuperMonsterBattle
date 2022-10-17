@@ -4,16 +4,20 @@
     {
         public string Name { get; private set; }
 
-        private uint hp;
-        public uint HP
+        private int hp;
+        public int HP
         {
             get => hp;
             set
             {
-                if (value > hp)
+                if (value < 0)
                 {
                     Dead = true;
                     hp = 0;
+                }
+                else
+                {
+                    hp = value;
                 }
             }
         }
@@ -22,7 +26,7 @@
         public uint Damage { get; set; }
         public bool Dead { get; private set; }
 
-        public Creature(string Name, uint HP, uint Damage)
+        public Creature(string Name, int HP, uint Damage)
         {
             this.Name = Name;
             this.HP = HP;
@@ -42,7 +46,7 @@
             }
             else
             {
-                HP -= damage;
+                HP -= (int)damage;
                 return damage;
             }
         }

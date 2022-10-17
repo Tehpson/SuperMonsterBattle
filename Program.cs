@@ -8,8 +8,8 @@ namespace SuperMonsterBattle
     {
         static void Main(string[] args)
         {
-            Console.SetWindowSize(100, 25);
-            Console.SetBufferSize(100, 25);
+            Console.SetWindowSize(150, 50);
+            Console.SetBufferSize(150, 50);
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine();
             var manager = new Manager(new Player(name, 100, 2, 10));
