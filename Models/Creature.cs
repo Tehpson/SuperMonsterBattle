@@ -26,11 +26,14 @@
         public uint Damage { get; set; }
         public bool Dead { get; private set; }
 
-        public Creature(string Name, int HP, uint Damage)
+        public int Speed { get; set; }
+
+        public Creature(string Name, int HP, uint Damage, int Speed)
         {
             this.Name = Name;
             this.HP = HP;
             this.Damage = Damage;
+            this.Speed = Speed;
         }
 
         public uint GiveDamage()

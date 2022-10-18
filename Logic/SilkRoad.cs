@@ -69,7 +69,7 @@ namespace SuperMonsterBattle.Logic
                 else
                 {
                     var standard = ItemLists.Drugs.Find(x => x.Name == item.Name);
-                    var newitem = new DrugItem { Name = standard.Name , Amount = 1, BuyPrice = standard.BuyPrice, SellPrice = standard.SellPrice};
+                    var newitem = new DrugItem { Name = standard.Name , Amount = 1, BuyPrice = standard.BuyPrice, SellPrice = standard.SellPrice, Wanted = item.Wanted};
                     player.Stash.Add(newitem);
                 }
             }

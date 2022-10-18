@@ -8,8 +8,9 @@ namespace SuperMonsterBattle.Models
         public List<StoreItem> Cloth { get; set; } = new List<StoreItem>();
         public List<DrugItem> Stash { get; set; } = new List<DrugItem>();
         public double Money { get; set; }
+        public ushort Rep { get; set; }
 
-        public Player(string Name, int HP, uint Damage, double Money) : base(Name, HP, Damage) { this.Money = Money; }
+        public Player(string Name, int HP, uint Damage, int Speed, ushort Rep, double Money) : base(Name, HP, Damage, Speed) { this.Money = Money; this.Rep = Rep; }
 
         public override uint TakeDamage(uint damage)
         {

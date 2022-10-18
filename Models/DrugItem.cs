@@ -10,5 +10,6 @@ namespace SuperMonsterBattle.Models
         public uint SellPrice { get; set; }
         public uint BuyPrice { get; set; }
         public uint Amount { get; set; }
+        public ushort Wanted { get; set; }
     }
 }

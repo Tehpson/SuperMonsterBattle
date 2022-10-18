@@ -53,7 +53,9 @@ namespace SuperMonsterBattle.Logic
                         Inventory();
                         break;
                     case State.DrugRun:
-                        DrugRun();
+                        DrugRun.Run(player);
+                        Console.ReadKey();
+                        state = State.Menu;
                         break;
                     case State.SilkRoad:
                         SilkRoad();
@@ -81,11 +83,6 @@ namespace SuperMonsterBattle.Logic
         private void SilkRoad()
         {
             silkRoad.VisitSilkRoad(player,ref state);
-        }
-
-        private void DrugRun()
-        {
-            throw new NotImplementedException();
         }
 
         private void Inventory()
