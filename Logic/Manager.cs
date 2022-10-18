@@ -7,7 +7,8 @@ namespace SuperMonsterBattle.Logic
     class Manager
     {
         private readonly Player player;
-        private readonly StoreManager storeManager;
+        private readonly StoreManager storeManager = new StoreManager();
+        private readonly SilkRoad silkRoad = new SilkRoad();
         private State state = new State();
 
         public Manager (Player player)
@@ -17,10 +18,16 @@ namespace SuperMonsterBattle.Logic
 
 
 
-            using var timer = new System.Timers.Timer(60000 * 60);
-            timer.Elapsed += (sedner, e) => storeManager.UpdateStore();
-            timer.Start();
-            timer.AutoReset = true;
+            using var urbanTimer = new System.Timers.Timer(60000 * 60);
+            urbanTimer.Elapsed += (sedner, e) => storeManager.UpdateStore();
+            urbanTimer.Start();
+            urbanTimer.AutoReset = true;
+
+
+            using var SilkRoadtimer = new System.Timers.Timer(60000 * 20);
+            SilkRoadtimer.Elapsed += (sedner, e) => silkRoad.UpdateSilkRoad();
+            SilkRoadtimer.Start();
+            SilkRoadtimer.AutoReset = true;
 
 
         }
@@ -48,8 +55,8 @@ namespace SuperMonsterBattle.Logic
                     case State.DrugRun:
                         DrugRun();
                         break;
-                    case State.Delivery:
-                        Delivery();
+                    case State.SilkRoad:
+                        SilkRoad();
                         break;
                     case State.StealRun:
                         Steal();
@@ -71,9 +78,9 @@ namespace SuperMonsterBattle.Logic
             throw new NotImplementedException();
         }
 
-        private void Delivery()
+        private void SilkRoad()
         {
-            throw new NotImplementedException();
+            silkRoad.VisitSilkRoad(player,ref state);
         }
 
         private void DrugRun()
@@ -127,7 +134,7 @@ namespace SuperMonsterBattle.Logic
 
                     case ConsoleKey.NumPad5:
                     case ConsoleKey.D5:
-                        state = State.Delivery;
+                        state = State.SilkRoad;
                         return;
 
                     case ConsoleKey.E:
@@ -143,7 +150,7 @@ namespace SuperMonsterBattle.Logic
         Menu,
         Inventory,
         DrugRun,
-        Delivery,
+        SilkRoad,
         StealRun,
         Fight,
         Rest,

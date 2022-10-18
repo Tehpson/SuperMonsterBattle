@@ -11,9 +11,11 @@ namespace SuperMonsterBattle
         {
             Console.SetWindowSize(150, 40);
             Console.SetBufferSize(150, 40);
+            ItemLists.Seed();
+
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine();
-            var manager = new Manager(new Player(name, 100, 2, 10));
+            var manager = new Manager(new Player(name, 100, 2, 10000));
             manager.RunGame();
             
         }
