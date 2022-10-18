@@ -24,7 +24,9 @@ namespace SuperMonsterBattle.Logic
                 var r = rnad.Next(98, 105);
                 decimal flux = r / 100m;
                 item.BuyPrice = (uint)(item.BuyPrice * flux);
-                item.Amount = 10;
+                 r = rnad.Next(50, 140);
+                flux = r / 100m;
+                item.Amount = (uint)(item.Rarity * flux);
                 InStorage.Add(item);
             }
         }
@@ -57,7 +59,7 @@ namespace SuperMonsterBattle.Logic
         private void Buy(Player player, int SelectedItem)
         {
             var item = InStorage[SelectedItem];
-            if (item.BuyPrice < player.Money && InStorage[SelectedItem].Amount > 0)
+            if (item.BuyPrice <= player.Money && InStorage[SelectedItem].Amount > 0)
             {
                 player.Money -= item.BuyPrice;
                 item.Amount--;
