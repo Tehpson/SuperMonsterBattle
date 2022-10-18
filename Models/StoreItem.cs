@@ -2,7 +2,7 @@
 
 namespace SuperMonsterBattle.Models
 {
-    public class StoreItem : IItem
+    public class StoreItem
     {
         public string Name { get; private set; }
         public uint Price { get; set; }

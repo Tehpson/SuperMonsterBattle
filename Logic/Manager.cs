@@ -1,9 +1,6 @@
 ﻿using SuperMonsterBattle.Models;
 using SuperMonsterBattle.Visuals;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperMonsterBattle.Logic
 {
@@ -33,7 +30,6 @@ namespace SuperMonsterBattle.Logic
             while (true)
             {
                 Visual.DrawStatusBar(player);
-                if (storeManager.NextUpdate < DateTime.Now) storeManager.UpdateStore();
 
                 switch (state)
                 {
@@ -87,7 +83,12 @@ namespace SuperMonsterBattle.Logic
 
         private void Inventory()
         {
-            throw new NotImplementedException();
+            Visual.DrawInventory(player);
+            if(Console.ReadKey(true).Key == ConsoleKey.Escape)
+            {
+                state = State.Menu;
+            
+            }
         }
 
         private void Rest()
