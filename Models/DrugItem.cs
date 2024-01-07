@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SuperMonsterBattle.Models
+namespace AngeredSimulator.Models
 {
     internal class DrugItem
     {

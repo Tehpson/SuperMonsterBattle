@@ -1,11 +1,9 @@
-﻿using SuperMonsterBattle.Models;
+﻿using AngeredSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace SuperMonsterBattle.Visuals
+namespace AngeredSimulator.Visuals
 {
     internal class Visual
     {
@@ -34,7 +32,7 @@ namespace SuperMonsterBattle.Visuals
                                 3 * (i + 1) + 2  ,
                                 (int)(Console.WindowWidth * 0.8),
                                 3,
-                                new string[1] { $" Name: {inStorage[i].Name}  |  Amount: {inStorage[i].Amount}  |  BuyPrice: {inStorage[i].BuyPrice}  |  Predicted sell price: {inStorage[i].SellPrice} " },
+                                [$" Name: {inStorage[i].Name}  |  Amount: {inStorage[i].Amount}  |  BuyPrice: {inStorage[i].BuyPrice}  |  Predicted sell price: {inStorage[i].SellPrice} "],
                                 selectedBox == i ? ConsoleColor.DarkGray : ConsoleColor.White);
 
             }
@@ -77,7 +75,7 @@ namespace SuperMonsterBattle.Visuals
                                 boxRow * boxHight + boxRow,
                                 BoxWidth,
                                 boxHight,
-                                player.Stash.Count > i ? new string[2] { player.Stash[i].Amount.ToString(), player.Stash[i].Name } : new string[1] { "" }
+                                player.Stash.Count > i ? [player.Stash[i].Amount.ToString(), player.Stash[i].Name] : [""]
                                 );
 
                 boxColumn++;

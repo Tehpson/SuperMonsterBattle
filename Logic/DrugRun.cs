@@ -1,9 +1,9 @@
-﻿using SuperMonsterBattle.Models;
-using SuperMonsterBattle.Visuals;
+﻿using AngeredSimulator.Models;
+using AngeredSimulator.Visuals;
 using System;
 using System.Collections.Generic;
 
-namespace SuperMonsterBattle.Logic
+namespace AngeredSimulator.Logic
 {
     class DrugRun
     {

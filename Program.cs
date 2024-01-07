@@ -1,16 +1,28 @@
-﻿using SuperMonsterBattle.Logic;
-using SuperMonsterBattle.Models;
+﻿using AngeredSimulator.Logic;
+using AngeredSimulator.Models;
 using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace SuperMonsterBattle
+namespace AngeredSimulator
 {
     class Program
     {
-        static void Main(string[] args)
+        [DllImport("user32.dll")]
+        private static extern short GetAsyncKeyState(int key);
+        static void Main()
         {
-            Console.SetWindowSize(150, 40);
-            Console.SetBufferSize(150, 40);
+            Console.WriteLine("To start pres alt+Enter");
+            while (true)
+            {
+                bool altKeyPressed = (GetAsyncKeyState(0xA4) & 0x8000) != 0 || (GetAsyncKeyState(0xA5) & 0x8000) != 0;
+                bool enterKeyPressed = (GetAsyncKeyState(0x0D) & 0x8000) != 0;
+                if(altKeyPressed && enterKeyPressed)
+                {
+                    Console.Clear();
+                    break;
+                }
+            }
             ItemLists.Seed();
 
             Console.WriteLine("Enter Name:");

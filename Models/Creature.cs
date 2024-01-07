@@ -1,4 +1,4 @@
-﻿namespace SuperMonsterBattle.Models
+﻿namespace AngeredSimulator.Models
 {
     internal class Creature
     {

@@ -1,9 +1,9 @@
-﻿using SuperMonsterBattle.Models;
+﻿using AngeredSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SuperMonsterBattle.Logic
+namespace AngeredSimulator.Logic
 {
     internal class SilkRoad
     {

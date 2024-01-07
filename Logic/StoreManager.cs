@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SuperMonsterBattle.Logic
+namespace AngeredSimulator.Logic
 {
     internal class StoreManager
     {

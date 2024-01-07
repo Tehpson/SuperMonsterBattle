@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SuperMonsterBattle.Models
+namespace AngeredSimulator.Models
 {
     public class StoreItem
     {

@@ -1,9 +1,9 @@
-﻿using SuperMonsterBattle.Models;
+﻿using AngeredSimulator.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SuperMonsterBattle.Logic
+namespace AngeredSimulator.Logic
 {
     class ItemLists
     {
