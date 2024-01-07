@@ -1,18 +1,18 @@
 ﻿using SuperMonsterBattle.Models;
+using SuperMonsterBattle.Visuals;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SuperMonsterBattle.Logic
 {
     class DrugRun
     {
-
+        public static int DrugRunCounter = 0;
         public static void Run(Player player)
         {
             List<DrugItem> soldDrugs = new List<DrugItem>();
-            int AinaProb = 0; //CalculateProbablityToEncunterAina(player);
-            int GangProb = 0;//CalculateProbablityToEncunterGang(player);
+            int AinaProb = CalculateProbablityToEncunterAina(player);
+            int GangProb = CalculateProbablityToEncunterGang(player);
             var rand = new Random();
             bool EncouterAina = rand.Next(100) < AinaProb; 
             bool EncouterGang = rand.Next(100) < GangProb; 
@@ -27,7 +27,7 @@ namespace SuperMonsterBattle.Logic
                 }
                 
                 var profit = CalculateProfite(soldDrugs);
-                Console.WriteLine("you sold for:" +profit);
+                Visual.DrawCenterdBoxWithText($"you sold for: {profit}");
                 player.Money += profit;
                 foreach (var item in soldDrugs)
                 {
@@ -36,17 +36,16 @@ namespace SuperMonsterBattle.Logic
                     if (drugInStash.Amount > 1) drugInStash.Amount--; else player.Stash.Remove(drugInStash);
                 }
             }
+            else if (EncouterAina)
+            {
+                player.Stash.Clear();
+                Visual.DrawCenterdBoxWithText( new List<string> { "Shorri rullade förbi med sin piket", "för att inte bli nerslagen så slängde du allt ditt stash i en soptunna i närheten...", "Bra jobbat du har förloart allt" });
+            }
+            DrugRunCounter++;
         }
 
-        private static int CalculateProbablityToEncunterAina(Player player)
-        {
-            throw new NotImplementedException();
-        }
-        private static int CalculateProbablityToEncunterGang(Player player)
-        {
-
-            throw new NotImplementedException();
-        }
+        private static int CalculateProbablityToEncunterAina(Player player) => Math.Min((int)Math.Floor((decimal)(DrugRunCounter / 5)), 80);
+        private static int CalculateProbablityToEncunterGang(Player player) => Math.Min((int)Math.Floor((decimal)(DrugRunCounter / 5)), 80);
         private static uint CalculateProfite(List<DrugItem> SoldList)
         {
             uint profit = 0;
@@ -56,7 +55,6 @@ namespace SuperMonsterBattle.Logic
                     var r = ran.Next(95, 105);
                     decimal flux = r / 100m;
                     profit += (uint)(item.SellPrice * flux);
-
             }
             return profit;
         }

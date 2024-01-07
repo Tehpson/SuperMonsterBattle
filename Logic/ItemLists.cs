@@ -19,7 +19,7 @@ namespace SuperMonsterBattle.Logic
             Drugs.Add(new DrugItem { Name = "Cocaine", BuyPrice = 7000, SellPrice = 9000, Wanted = 20, Rarity = 34 });
             Drugs.Add(new DrugItem { Name = "Rhino ket", BuyPrice = 24000, SellPrice = 30000, Wanted = 10, Rarity = 28 });
             Drugs.Add(new DrugItem { Name = "2-DPMP", BuyPrice = 305000, SellPrice = 328000, Wanted = 25, Rarity = 20 });
-            Drugs.Add(new DrugItem { Name = "Wonk", BuyPrice = 500000, SellPrice = 57000, Wanted = 35, Rarity = 12 });
+            Drugs.Add(new DrugItem { Name = "Wonk", BuyPrice = 500000, SellPrice = 570000, Wanted = 35, Rarity = 12 });
             Drugs.Add(new DrugItem { Name = "Omega3", BuyPrice = 4000000, SellPrice = 5000000, Wanted = 25, Rarity = 5 });
             // 10% win game 90% die.
             Drugs.Add(new DrugItem { Name = "GON", BuyPrice = 1000000000, SellPrice = 0, Wanted = 100, Rarity = 1 });

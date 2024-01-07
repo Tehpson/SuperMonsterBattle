@@ -10,12 +10,13 @@ namespace SuperMonsterBattle.Logic
 
         internal void UpdateStore()
         {
-            throw new NotImplementedException();
+            Manager.state = State.Menu;
         }
 
         internal void VisitStore()
         {
-            throw new NotImplementedException();
+            Manager.state = State.Menu;
+
         }
     }
 }

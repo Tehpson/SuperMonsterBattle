@@ -1,6 +1,9 @@
 ﻿using SuperMonsterBattle.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SuperMonsterBattle.Visuals
 {
@@ -118,6 +121,24 @@ namespace SuperMonsterBattle.Visuals
 
 
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        internal static void DrawBoxWithText(int startX, int startY, int width, int highth, string Text)
+        {
+            var stringarray = new string[1];
+            stringarray[0] = Text;
+            DrawBoxWithText(startX, startY, width, highth, stringarray);
+        }
+
+        internal static void DrawCenterdBoxWithText(List<string> texts)
+        {
+            int longestLength = texts.Max(x=> x?.Length ?? 0);
+            var textOffset = longestLength / 2 + 1;
+            DrawBoxWithText(Console.WindowWidth / 2 - textOffset + 5, Console.WindowHeight /2  - 1, longestLength +3, texts.Count+2, texts.ToArray());
+        }
+        internal static void DrawCenterdBoxWithText(string text)
+        {
+            DrawCenterdBoxWithText(new List<string> { text });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SuperMonsterBattle.Models;
 using SuperMonsterBattle.Visuals;
 using System;
+using System.Runtime.InteropServices;
 
 namespace SuperMonsterBattle.Logic
 {
@@ -9,27 +10,25 @@ namespace SuperMonsterBattle.Logic
         private readonly Player player;
         private readonly StoreManager storeManager = new StoreManager();
         private readonly SilkRoad silkRoad = new SilkRoad();
-        private State state = new State();
+        private System.Timers.Timer SilkRoadtimer;
+        private System.Timers.Timer urbanTimer;
+        private DateTime RestTimer;
+        public static State state = new State();
 
         public Manager (Player player)
         {
             this.player = player;
             state = State.Menu;
 
-
-
-            using var urbanTimer = new System.Timers.Timer(60000 * 60);
+            urbanTimer = new System.Timers.Timer(60000 * 60);
             urbanTimer.Elapsed += (sedner, e) => storeManager.UpdateStore();
             urbanTimer.Start();
             urbanTimer.AutoReset = true;
 
-
-            using var SilkRoadtimer = new System.Timers.Timer(60000 * 20);
+            SilkRoadtimer = new System.Timers.Timer(60000 * 20);
             SilkRoadtimer.Elapsed += (sedner, e) => silkRoad.UpdateSilkRoad();
             SilkRoadtimer.Start();
             SilkRoadtimer.AutoReset = true;
-
-
         }
 
         internal void RunGame()
@@ -72,12 +71,12 @@ namespace SuperMonsterBattle.Logic
 
         private void Figth()
         {
-            throw new NotImplementedException();
+            Manager.state = State.Menu;
         }
 
         private void Steal()
         {
-            throw new NotImplementedException();
+            Manager.state = State.Menu;
         }
 
         private void SilkRoad()
@@ -97,7 +96,25 @@ namespace SuperMonsterBattle.Logic
 
         private void Rest()
         {
-            throw new NotImplementedException();
+            Visual.DrawStatusBar(player);
+            if (RestTimer < DateTime.Now)
+            {
+                SilkRoadtimer.Stop();
+                SilkRoadtimer.Start();
+                silkRoad.UpdateSilkRoad();
+                urbanTimer.Stop();
+                urbanTimer.Start();
+                //storeManager.UpdateStore();
+                Visual.DrawBoxWithText(Console.WindowWidth / 2, Console.WindowHeight / 2, 20, 3, "Du sov bra");
+                RestTimer = DateTime.Now.AddMinutes(1);
+            }
+            else
+            {
+                Visual.DrawBoxWithText(Console.WindowWidth / 2 - 24, Console.WindowHeight / 2, 47, 3, "Du är inte trött, chilla kant och bazza tant");
+            }
+            Console.ReadKey();
+            state = State.Menu;
+
         }
 
         private void Menu()
@@ -143,7 +160,6 @@ namespace SuperMonsterBattle.Logic
     }
     public enum State
     {
-
         Menu,
         Inventory,
         DrugRun,
