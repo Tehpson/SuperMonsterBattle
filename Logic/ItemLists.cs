@@ -7,8 +7,8 @@ namespace AngeredSimulator.Logic
 {
     class ItemLists
     {
-        public static List<DrugItem> Drugs { get; private set; } = new List<DrugItem>();
-        public static List<StoreItem> storeItems { get; private set; } = new List<StoreItem>();
+        public static List<DrugItem> Drugs { get; private set; } = [];
+        public static List<StoreItem> StoreItems { get; private set; } = [];
 
         public static void Seed()
         {

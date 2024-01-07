@@ -27,7 +27,8 @@ namespace AngeredSimulator
 
             Console.WriteLine("Enter Name:");
             var name = Console.ReadLine();
-            var manager = new Manager(new Player(name, 100, 2,10,0, 50));
+
+            var manager = new Manager(new Player(name, 100, 2,10,50));
             manager.RunGame();
             
         }

@@ -1,4 +1,5 @@
-﻿using AngeredSimulator.Models;
+﻿using Angeredsimulator.Models;
+using AngeredSimulator.Models;
 using AngeredSimulator.Visuals;
 using System;
 using System.Runtime.InteropServices;
@@ -8,16 +9,19 @@ namespace AngeredSimulator.Logic
     class Manager
     {
         private readonly Player player;
-        private readonly StoreManager storeManager = new StoreManager();
-        private readonly SilkRoad silkRoad = new SilkRoad();
-        private System.Timers.Timer SilkRoadtimer;
+        private readonly StoreManager storeManager = new();
+        private readonly SilkRoad silkRoad = new();
+        private readonly Gangs gangs = new();
+        private System.Timers.Timer silkRoadtimer;
         private System.Timers.Timer urbanTimer;
         private DateTime RestTimer;
-        public static State state = new State();
+        public static State state = new();
 
         public Manager (Player player)
         {
             this.player = player;
+            gangs.GangsList.ForEach(x => player.GangUpdateGangRep(x, 0));
+
             state = State.Menu;
 
             urbanTimer = new System.Timers.Timer(60000 * 60);
@@ -25,10 +29,10 @@ namespace AngeredSimulator.Logic
             urbanTimer.Start();
             urbanTimer.AutoReset = true;
 
-            SilkRoadtimer = new System.Timers.Timer(60000 * 20);
-            SilkRoadtimer.Elapsed += (sedner, e) => silkRoad.UpdateSilkRoad();
-            SilkRoadtimer.Start();
-            SilkRoadtimer.AutoReset = true;
+            silkRoadtimer = new System.Timers.Timer(60000 * 20);
+            silkRoadtimer.Elapsed += (sedner, e) => silkRoad.UpdateSilkRoad();
+            silkRoadtimer.Start();
+            silkRoadtimer.AutoReset = true;
         }
 
         internal void RunGame()
@@ -90,7 +94,6 @@ namespace AngeredSimulator.Logic
             if(Console.ReadKey(true).Key == ConsoleKey.Escape)
             {
                 state = State.Menu;
-            
             }
         }
 
@@ -99,8 +102,8 @@ namespace AngeredSimulator.Logic
             Visual.DrawStatusBar(player);
             if (RestTimer < DateTime.Now)
             {
-                SilkRoadtimer.Stop();
-                SilkRoadtimer.Start();
+                silkRoadtimer.Stop();
+                silkRoadtimer.Start();
                 silkRoad.UpdateSilkRoad();
                 urbanTimer.Stop();
                 urbanTimer.Start();

@@ -10,7 +10,7 @@ namespace AngeredSimulator.Logic
         public static int DrugRunCounter = 0;
         public static void Run(Player player)
         {
-            List<DrugItem> soldDrugs = new List<DrugItem>();
+            List<DrugItem> soldDrugs = [];
             int AinaProb = CalculateProbablityToEncunterAina(player);
             int GangProb = CalculateProbablityToEncunterGang(player);
             var rand = new Random();

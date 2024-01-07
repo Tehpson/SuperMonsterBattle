@@ -7,7 +7,7 @@ namespace AngeredSimulator.Logic
 {
     internal class SilkRoad
     {
-        public List<DrugItem> InStorage { get; set; } = new List<DrugItem>();
+        public List<DrugItem> InStorage { get; set; } = [];
         private int SelectedItem = 0;
 
         public SilkRoad()

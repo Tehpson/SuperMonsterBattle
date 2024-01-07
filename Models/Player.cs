@@ -1,16 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using Angeredsimulator.Models;
+using System.Collections.Generic;
 
 namespace AngeredSimulator.Models
 {
-    internal class Player : Creature
+    internal class Player(string Name, int HP, uint Damage, int Speed, double money) : Creature(Name, HP, Damage, Speed)
     {
-       
-        public List<StoreItem> Cloth { get; set; } = new List<StoreItem>();
-        public List<DrugItem> Stash { get; set; } = new List<DrugItem>();
-        public double Money { get; set; }
-        public ushort Rep { get; set; }
+        public List<StoreItem> Cloth { get; set; } = [];
+        public List<DrugItem> Stash { get; set; } = [];
+        public double Money { get; set; } = money;
+        public Dictionary<Gang, uint> GangRep { get; set; } = new Dictionary<Gang, uint>();
 
-        public Player(string Name, int HP, uint Damage, int Speed, ushort Rep, double Money) : base(Name, HP, Damage, Speed) { this.Money = Money; this.Rep = Rep; }
+        public void GangUpdateGangRep(Gang gangToUpdate, int newValue)
+        {
+            if (GangRep.ContainsKey(gangToUpdate))
+            {
+                GangRep[gangToUpdate] = (uint)newValue;
+            }
+        }
 
         public override uint TakeDamage(uint damage)
         {

@@ -1,6 +1,6 @@
 ﻿namespace AngeredSimulator.Models
 {
-    internal class Creature
+    public class Creature
     {
         public string Name { get; private set; }
 
